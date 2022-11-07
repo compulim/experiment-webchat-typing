@@ -1,0 +1,27 @@
+{
+  "name": "experiment-webchat-typing",
+  "version": "0.0.0-0",
+  "scripts": {
+    "build": "concurrently --kill-others \"npm run build:*\"",
+    "build:esbuild": "esbuild --bundle --outfile=./public/static/js/main.js src/index.tsx",
+    "build:typescript": "tsc -p ./src/tsconfig.json",
+    "start": "concurrently --kill-others \"npm run start:*\"",
+    "start:esbuild": "npm run build:esbuild -- --servedir=./public",
+    "start:typescript": "npm run build:typescript -- --watch"
+  },
+  "author": "William Wong (https://github.com/compulim)",
+  "license": "MIT",
+  "dependencies": {
+    "botframework-webchat": "^4.15.4",
+    "punycode": "^2.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.8",
+    "concurrently": "^7.5.0",
+    "esbuild": "^0.15.13",
+    "typescript": "^4.8.4"
+  }
+}
