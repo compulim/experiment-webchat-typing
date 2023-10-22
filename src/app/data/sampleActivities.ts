@@ -43,5 +43,10 @@ export default [
     from: { role: 'bot' },
     text: 'Veniam pariatur reprehenderit do enim. Consectetur id sit minim eu in occaecat dolor. Lorem nisi ad consequat enim nostrud fugiat amet culpa. Consequat do nisi enim ad. Anim in mollit laborum fugiat ipsum anim eu.',
     type: 'message'
+  },
+  {
+    from: { role: 'bot' },
+    text: 'Lorem ips',
+    type: 'typing'
   }
 ];

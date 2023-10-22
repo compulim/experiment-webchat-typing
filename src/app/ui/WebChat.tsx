@@ -5,6 +5,7 @@ import { memo, useEffect, useMemo, useState } from 'react';
 import { type WebChatActivity } from 'botframework-webchat-core';
 
 import createDirectLineEmulator from '../util/createDirectLineEmulator';
+import createTypingActivityMiddleware from './typingActivityMiddleware/createTypingActivityMiddleware';
 
 const { BasicWebChat, Composer } = Components;
 
@@ -12,6 +13,7 @@ type Props = Readonly<{ activities: readonly WebChatActivity[] }>;
 
 export default memo(function Chat({ activities }: Props) {
   const [ready, setReady] = useState(false);
+  const activityMiddleware = useMemo(() => createTypingActivityMiddleware(), []);
   const store = useMemo(
     () =>
       createStore({}, () => (next: (action: unknown) => unknown) => (action: { type: string }) => {
@@ -54,7 +56,7 @@ export default memo(function Chat({ activities }: Props) {
 
   return (
     <div className="chat">
-      <Composer directLine={directLine} store={store}>
+      <Composer activityMiddleware={activityMiddleware} directLine={directLine} store={store}>
         <BasicWebChat />
       </Composer>
     </div>
