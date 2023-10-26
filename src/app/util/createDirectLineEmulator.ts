@@ -10,6 +10,7 @@ import shareObservable from './private/shareObservable';
 
 import { type createStore } from 'botframework-webchat';
 import { type WebChatActivity } from 'botframework-webchat-core';
+import { WebChatTypingActivity } from '../ui/typingActivityMiddleware/WebChatTypingActivity';
 
 type ActPostActivityInit = { id?: string | undefined };
 type Deferred<T> = ReturnType<typeof createDeferred<T>>;
@@ -142,7 +143,7 @@ export default function createDirectLineEmulator({
       };
     },
     emulateConnected: connectedDeferred.resolve,
-    emulateIncomingActivity: async (activity: Partial<WebChatActivity>) => {
+    emulateIncomingActivity: async (activity: Partial<WebChatActivity | WebChatTypingActivity>) => {
       if (typeof activity === 'string') {
         activity = {
           from: { id: 'bot', role: 'bot' },
